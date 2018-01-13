@@ -20,6 +20,7 @@ def unpool2(pool, ksize, stride, padding = 'VALID'):
     pool_shape = pool.shape.as_list()
     if padding == 'VALID':
         size = (pool_shape[2] - 1) * stride + ksize
+    # padding == 'SAME'
     else:
         size = pool_shape[2] * stride
     unpool_shape = [pool_shape[0], pool_shape[1], size, size]
@@ -33,3 +34,6 @@ def unpool2(pool, ksize, stride, padding = 'VALID'):
     
     unpool = tf.transpose(unpool, perm=[0,2,3,1])
     return unpool
+
+# examples
+# unpool2(pool, 2, 2, 'VaLID')
